@@ -1,0 +1,64 @@
+﻿
+System Name (example):
+Realtime Notification Service (Simplified)
+
+Purpose
+
+A backend service that:
+delivers real-time in-app notifications using SignalR
+supports user-specific and category-based notifications
+allows users to subscribe/unsubscribe to categories
+supports scheduled notifications
+persists notifications so users can fetch them later
+
+📌 No SMS, no email, no push providers
+
+
+Core Features:
+
+🔹 Notification Types
+
+1. User Notification:
+sent to a specific user
+no subscription needed
+
+2. Category Notification
+sent to all users subscribed to a category
+
+
+
+🔹 Subscriptions:
+
+Users can:
+subscribe to categories
+unsubscribe from categories
+
+When connected via SignalR:
+user joins category SignalR groups automatically
+
+
+Scheduled Notifications
+
+Notifications can be:
+sent immediately
+scheduled for a future time
+
+⚠️ Simplified scheduling:
+background service
+database polling
+no distributed scheduler
+
+
+🔹 Real-Time Delivery
+Online users → SignalR
+Offline users → stored in DB
+
+
+🔹 Notification History
+Fetch notifications (paginated)
+Mark as read
+Unread count
+
+🔹 Authentication
+JWT authentication
+SignalR secured using JWT

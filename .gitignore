@@ -1,0 +1,36 @@
+# Visual Studio / Rider / IDE
+
+
+.vs/
+appsettings*.json
+notes.txt
+.dockerignore
+
+# Build / bin / obj
+bin/
+obj/
+Debug/
+Release/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Logs
+*.log
+*.tlog
+
+# ASP.NET / .NET Core
+appsettings.*.json  # optional: if you want to ignore secrets
+wwwroot/lib/
+
+# Docker
+docker-compose.override.yml
+
+# JetBrains / VS Code
+.vscode/
