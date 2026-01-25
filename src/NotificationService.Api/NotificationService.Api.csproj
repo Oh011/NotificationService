@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Hubs\" />
-    <Folder Include="Middlewares\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 
