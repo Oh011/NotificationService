@@ -14,6 +14,8 @@ namespace NotificationService.Domain.Entities
         public string Name { get; set; }  // e.g., "Marketing Updates"
         public string Description { get; set; }
 
+        public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
+
         public ICollection<UserNotificationSubscription> Subscriptions { get; set; } = new List<UserNotificationSubscription>();    
         public bool IsActive { get; set; } = true;
     }

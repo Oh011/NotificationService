@@ -14,7 +14,7 @@ namespace NotificationService.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
-
+        public ICollection<UserNotificationPreference> UserNotificationPreferences { get; set; }=new List<UserNotificationPreference>();
         public ICollection<Notification> Notifications { get; set; }=new List<Notification>();  
         public bool IsActive { get; set; } = true; // Allow deactivating old categories
        

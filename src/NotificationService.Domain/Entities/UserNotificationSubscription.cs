@@ -13,8 +13,7 @@ namespace NotificationService.Domain.Entities
         public string UserId { get; set; }
         public int TopicId { get; set; }
 
-    
-
+   
         public NotificationTopic Topic { get; set; }
         public DateTime SubscribedAt { get; set; }
         public DateTime? UnsubscribedAt { get; set; } // null if still subscribed

@@ -20,6 +20,8 @@ namespace NotificationService.Domain.Entities
 
         public bool IsRead { get; set; } = false;
 
+        public ICollection<NotificationChannelStatus> NotificationChannelStatuses { get; set; } = new List<NotificationChannelStatus>();
+
         public DateTime? ReadAt { get; set; }       // Optional timestamp
 
 
