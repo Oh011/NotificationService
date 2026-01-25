@@ -62,3 +62,16 @@ Unread count
 🔹 Authentication
 JWT authentication
 SignalR secured using JWT
+
+======================================================================
+
+Make a foreign key navigation to ApplicationUser only if your data must always load together with the
+user and you control query loading carefully (monoliths, internal business logic).
+Store just the UserId without a FK if the system should be decoupled, scalable, or shared across 
+services (e.g., notifications, preferences) — validate existence via API or service.
+Rule of thumb: FK → tight coupling and integrity; UserId only → flexibility and horizontal 
+scalability.In notification systems, most tables keep UserId only, 
+while other domains (Employee, Orders) can have real FK relations.
+
+
+=================================================================================
