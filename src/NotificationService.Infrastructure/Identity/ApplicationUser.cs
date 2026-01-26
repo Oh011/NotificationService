@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NotificationService.Infrastructure.Identity
 {
-    public class AplicationUser: IdentityUser
+    public class ApplicationUser: IdentityUser
     {
 
-        string FullName { get; set; } = null!;
+    
 
 
     }

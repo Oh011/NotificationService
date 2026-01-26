@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NotificationService.Infrastructure.Persistence.Context
 {
-    internal class ApplicationDbContext:IdentityDbContext<AplicationUser>
+    internal class ApplicationDbContext:IdentityDbContext<ApplicationUser>
     {
 
 
@@ -33,7 +33,7 @@ namespace NotificationService.Infrastructure.Persistence.Context
         public DbSet<Notification> Notifications { get; set; }
 
 
-
+        public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<NotificationChannelStatus> NotificationChannelStatuses { get; set; }
 
         public DbSet<UserNotification> UserNotifications { get; set; }

@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NotificationService.Infrastructure.Identity;
+using NotificationService.Infrastructure.Identity.DataSeeding;
 using NotificationService.Infrastructure.Persistence.Context;
 using System;
 using System.Collections.Generic;
@@ -18,13 +21,46 @@ namespace NotificationService.Infrastructure.DependencyInjection
         {
 
 
-           
+            services.AddScoped<IIdentityDbInitializer, IdentityDbInitializer>();
+
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("DefaultConnection");
                 options.UseSqlServer(connectionString);
             });
+
+
+
+            services.AddIdentity<ApplicationUser,IdentityRole>(options => {
+
+
+
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 8;
+
+                options.Tokens.EmailConfirmationTokenProvider = "Default";
+
+
+
+                // Lockout settings (optional for security)
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+
+                // Sign-in settings
+
+
+
+
+            }).AddEntityFrameworkStores<ApplicationDbContext>()
+         .AddDefaultTokenProviders();
 
             return services;
         }

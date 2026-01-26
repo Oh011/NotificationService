@@ -21,11 +21,11 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Hubs\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NotificationService.Infrastructure\NotificationService.Infrastructure.csproj" />
+    <ProjectReference Include="..\NotificationService.Shared\NotificationService.Shared.csproj" />
   </ItemGroup>
 
 </Project>

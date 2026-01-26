@@ -426,7 +426,7 @@ namespace NotificationService.Infrastructure.Persistence.Migrations
                     b.ToTable("UserNotificationSubscriptions");
                 });
 
-            modelBuilder.Entity("NotificationService.Infrastructure.Identity.AplicationUser", b =>
+            modelBuilder.Entity("NotificationService.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -502,7 +502,7 @@ namespace NotificationService.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("NotificationService.Infrastructure.Identity.AplicationUser", null)
+                    b.HasOne("NotificationService.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -511,7 +511,7 @@ namespace NotificationService.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("NotificationService.Infrastructure.Identity.AplicationUser", null)
+                    b.HasOne("NotificationService.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -526,7 +526,7 @@ namespace NotificationService.Infrastructure.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NotificationService.Infrastructure.Identity.AplicationUser", null)
+                    b.HasOne("NotificationService.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -535,7 +535,7 @@ namespace NotificationService.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("NotificationService.Infrastructure.Identity.AplicationUser", null)
+                    b.HasOne("NotificationService.Infrastructure.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,11 +1,14 @@
 
+using NotificationService.Api.Extensions;
+using NotificationService.Api.Middlewares;
 using NotificationService.Infrastructure.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace NotificationService.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,9 @@ namespace NotificationService.Api
 
             var app = builder.Build();
 
+
+            app.UseMiddleware<GlobalErrorHandleMiddleware>();   
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -33,6 +39,8 @@ namespace NotificationService.Api
 
 
             app.MapControllers();
+
+           await app.InitializeDatabaseAsync();
 
             app.Run();
         }
