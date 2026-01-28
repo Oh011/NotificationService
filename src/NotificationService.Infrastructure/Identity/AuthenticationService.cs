@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using NotificationService.Application.Abstractions.Services;
-using NotificationService.Application.Dtos.Authentication;
+using NotificationService.Application.Abstractions.Security;
+using NotificationService.Application.Common.Errors;
+using NotificationService.Application.Common.Messages;
+using NotificationService.Application.Dtos.Authentication.Requests;
+using NotificationService.Application.Dtos.Authentication.Responses;
+using NotificationService.Infrastructure.Identity.Models;
 using NotificationService.Shared.Errors;
 using NotificationService.Shared.Results;
 using System;
@@ -13,7 +17,12 @@ namespace NotificationService.Infrastructure.Identity
 {
     public class AuthenticationService(UserManager<ApplicationUser> userManager) : IAuthenticationService
     {
-        public async Task<Result<Unit>> RegisterAsync(RegisterRequestDto requestDto)
+        public Task<Result<LogInUserResponse>> LogInAsync(LoginUserRequest requestDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Result<Unit>> RegisterAsync(RegisterRequest requestDto)
         {
           
             var userExists=await userManager.FindByEmailAsync(requestDto.Email);
@@ -22,7 +31,7 @@ namespace NotificationService.Infrastructure.Identity
             if (userExists != null)
             {
 
-                return Result<Unit>.FailureUnit("User with this email already exists.",ErrorType.Conflict);
+                return Result<Unit>.FailureUnit(AuthErrorMessages.USER_ALREADY_EXISTS,ErrorType.Conflict);
             }
 
 
@@ -52,7 +61,7 @@ namespace NotificationService.Infrastructure.Identity
             }
 
 
-            return Result<Unit>.Success("User registered successfully.");
+            return Result<Unit>.Success(AuthSuccessMessages.USER_REGISTERED,SuccessType.Created);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NotificationService.Infrastructure.Identity.Models;
 using NotificationService.Infrastructure.Persistence.Context;
 using System;
 using System.Collections.Generic;

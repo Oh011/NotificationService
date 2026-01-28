@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NotificationService.Infrastructure.Identity
+namespace NotificationService.Infrastructure.Identity.Models
 {
     public class ApplicationUser: IdentityUser
     {

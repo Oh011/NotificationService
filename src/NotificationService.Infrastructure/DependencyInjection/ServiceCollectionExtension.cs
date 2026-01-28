@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NotificationService.Application.Abstractions.Security;
 using NotificationService.Infrastructure.Identity;
 using NotificationService.Infrastructure.Identity.DataSeeding;
+using NotificationService.Infrastructure.Identity.Models;
 using NotificationService.Infrastructure.Persistence.Context;
 using System;
 using System.Collections.Generic;
@@ -23,6 +25,8 @@ namespace NotificationService.Infrastructure.DependencyInjection
 
             services.AddScoped<IIdentityDbInitializer, IdentityDbInitializer>();
 
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();  
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {

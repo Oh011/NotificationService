@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NotificationService.Domain.Entities;
-using NotificationService.Infrastructure.Identity;
+using NotificationService.Infrastructure.Identity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,17 @@ namespace NotificationService.Infrastructure.Persistence.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-       
+
+
+
+            builder.Entity<ApplicationUser>().ToTable("Users");
+            builder.Entity<IdentityRole>().ToTable("Roles");
+            builder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+            builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
+            builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
+            builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
+            builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
@@ -33,7 +44,7 @@ namespace NotificationService.Infrastructure.Persistence.Context
         public DbSet<Notification> Notifications { get; set; }
 
 
-        public DbSet<ApplicationUser> Users { get; set; }
+       public DbSet<RefreshToken> RefreshTokens { get; set; }   
         public DbSet<NotificationChannelStatus> NotificationChannelStatuses { get; set; }
 
         public DbSet<UserNotification> UserNotifications { get; set; }

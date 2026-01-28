@@ -22,17 +22,33 @@ namespace NotificationService.Api.Extensions
             };
         }
 
+
+        private static HttpStatusCode MapSuccess(SuccessType? successType) => successType switch
+        {
+            SuccessType.Created => HttpStatusCode.Created,
+            SuccessType.NoContent => HttpStatusCode.NoContent,
+            _ => HttpStatusCode.OK
+        };
+
         public static IApiResponse ToApiResponse<T>(this Result<T> result)
         {
+            var statusCode = HttpStatusCode.OK; 
+
             if (result.IsSuccess)
             {
-                if (result.Value is not null)
-                    return ApiResponseFactory.Success(result.Value);
 
-                return ApiResponseFactory.Success(result.Message ?? "Operation completed successfully");
+                 statusCode = MapSuccess(result.SuccessType);
+
+                if (result.Value is not null)
+                    return ApiResponseFactory.Success(result.Value, statusCode);
+
+                else if (result.Value is null && result.Message is not null)
+                    return ApiResponseFactory.Success(result.Message, statusCode);
+
+                    return ApiResponseFactory.Success(result.Message ?? "Operation completed successfully",statusCode);
             }
 
-            var statusCode = MapError(result.Error);
+            statusCode = MapError(result.Error);
 
             if (result.ValidationErrors is not null && result.ValidationErrors.Any())
             {

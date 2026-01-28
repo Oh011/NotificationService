@@ -16,21 +16,25 @@ namespace NotificationService.Shared.Results
         public ErrorType? Error { get; }
 
 
-        protected Result(bool isSuccess, string? message, ErrorType? error)
+        public SuccessType ? SuccessType { get;  }
+
+
+        protected Result(bool isSuccess, string? message, SuccessType ? successType, ErrorType? error)
         {
             IsSuccess = isSuccess;
 
             Message = message;
             Error = error;
+            this.SuccessType=successType;
         }
 
 
-        public static Result Success(string? message = null)
-            => new(true, message,null);
+        public static Result Success(string? message = null,SuccessType ?successType=null)
+            => new(true, message,null,null);
 
 
         public static Result Failure(ErrorType error , string? message = null)
-            => new(false, message,error);
+            => new(false, message,null,error);
 
 
     }

@@ -14,6 +14,7 @@ namespace NotificationService.Application.DependencyInjection
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             
+
             return services;
         }   
     }
