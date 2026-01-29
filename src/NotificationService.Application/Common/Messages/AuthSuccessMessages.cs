@@ -10,6 +10,7 @@ namespace NotificationService.Application.Common.Messages
     {
         public const string USER_REGISTERED = "User registered successfully.";
         public const string LOGIN_SUCCESS = "Login successful.";
+        public const string LOGOUT_SUCCESS = "Logged out successfully.";
         public const string PASSWORD_RESET_EMAIL_SENT = "Password reset email has been sent.";
         public const string EMAIL_CONFIRMED = "Email confirmed successfully.";
     }

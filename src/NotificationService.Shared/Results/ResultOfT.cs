@@ -26,8 +26,12 @@ namespace NotificationService.Shared.Results
 
         }
 
-        public static Result<T> Success(T value, string? message = null,SuccessType ?successType=null)
+        public static Result<T> Success(T value, string? message = null, SuccessType? successType = Results.SuccessType.Ok)
             => new(true, value, message, null,successType, null);
+
+
+        public static Result<T> Success(T value, SuccessType? successType = Results.SuccessType.Ok)
+    => new(true, value, null, null, successType, null);
 
         //  Success with no data (used in commands)
 

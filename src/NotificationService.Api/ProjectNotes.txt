@@ -75,3 +75,86 @@ while other domains (Employee, Orders) can have real FK relations.
 
 
 =================================================================================
+
+⚠️ Issues & Improvements (important ones)
+1️⃣ Logout should be IDEMPOTENT
+
+Right now:
+
+if(existingToken == null || existingToken.IsExpired)
+    return Failure Unauthorized
+
+
+👉 This causes problems:
+
+User clicks logout twice
+
+Cookie already deleted
+
+Token already revoked
+
+You return 401 Unauthorized
+
+🚫 That’s bad UX and not REST-friendly
+
+
+---> Fix some Auth Issues
+
+---------------------------------------------------
+
+Application
+ ├─ Abstractions
+ │   ├─ Persistence
+ │   │   └─ INotificationRepository
+ │   ├─ Messaging
+ │   │   └─ IEmailSender
+ │   └─ Services
+ │       └─ INotificationService
+ |      Securiry
+ |		└─ IAuthenticationService
+ │
+ ├─ Services              ✅ IMPLEMENTATIONS LIVE HERE
+ │   └─ NotificationService
+ │
+ ├─ Dtos
+ │   ├─ Requests
+ │   └─ Responses
+ │
+ ├─ Validation
+ │   └─ CreateNotificationValidator
+ │
+ ├─ Common
+ │   ├─ Errors
+ │   ├─ Messages
+ │   └─ Result
+ │
+ └─ DependencyInjection
+     └─ ApplicationDI
+
+
+=================================================================================   
+
+What is BodyBuilder?
+BodyBuilder is a MailKit helper class that helps you construct the body of an email.
+
+
+
+| Type       | Purpose                                                     |
+| ---------- | ----------------------------------------------------------- |
+| `TextBody` | Fallback for old clients, screen readers, security scanners |
+| `HtmlBody` | Rich email (styles, buttons, links, tables)                 |
+
+TextBody:
+Hello Omar,
+Your order was confirmed.
+
+HtmlBody:
+<h1>Hello Omar</h1>
+<p>Your <b>order</b> was confirmed.</p>
+
+Why not always HTML?
+
+Good question. Reasons:
+Some systems prefer plain text (logs, internal emails)
+Some security filters distrust HTML-only emails
+Plain text emails are simpler and safer
